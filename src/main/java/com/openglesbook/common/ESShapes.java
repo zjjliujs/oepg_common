@@ -38,14 +38,25 @@ public class ESShapes {
         float angleStep = ((2.0f * (float) Math.PI) / numSlices);
 
         // Allocate memory for buffers
-        mVertices = ByteBuffer.allocateDirect(numVertices * 3 * 4)
-                .order(ByteOrder.nativeOrder()).asFloatBuffer();
-        mNormals = ByteBuffer.allocateDirect(numVertices * 3 * 4)
-                .order(ByteOrder.nativeOrder()).asFloatBuffer();
-        mTexCoords = ByteBuffer.allocateDirect(numVertices * 2 * 4)
-                .order(ByteOrder.nativeOrder()).asFloatBuffer();
-        mIndices = ByteBuffer.allocateDirect(numIndices * 2)
-                .order(ByteOrder.nativeOrder()).asShortBuffer();
+        mVertices = ByteBuffer
+                .allocateDirect(numVertices * 3 * 4)
+                .order(ByteOrder.nativeOrder())
+                .asFloatBuffer();
+
+        mNormals = ByteBuffer
+                .allocateDirect(numVertices * 3 * 4)
+                .order(ByteOrder.nativeOrder())
+                .asFloatBuffer();
+
+        mTexCoords = ByteBuffer
+                .allocateDirect(numVertices * 2 * 4)
+                .order(ByteOrder.nativeOrder())
+                .asFloatBuffer();
+
+        mIndices = ByteBuffer
+                .allocateDirect(numIndices * 2)
+                .order(ByteOrder.nativeOrder())
+                .asShortBuffer();
 
         for (i = 0; i < numParallels + 1; i++) {
             for (j = 0; j < numSlices + 1; j++) {

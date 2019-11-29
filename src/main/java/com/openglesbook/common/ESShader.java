@@ -47,7 +47,7 @@ public class ESShader {
         GLES20.glGetShaderiv(shader, GLES20.GL_COMPILE_STATUS, compiled, 0);
 
         if (compiled[0] == 0) {
-            Log.e("ESShader", GLES20.glGetShaderInfoLog(shader));
+            logError(GLES20.glGetShaderInfoLog(shader));
             GLES20.glDeleteShader(shader);
             return 0;
         }
@@ -64,6 +64,7 @@ public class ESShader {
     /// \return A new program object linked with the vertex/fragment shader
     ///	 pair, 0 on failure
     //
+
     public static int loadProgram(String vertShaderSrc, String fragShaderSrc) {
         int vertexShader;
         int fragmentShader;
@@ -97,8 +98,8 @@ public class ESShader {
         GLES20.glGetProgramiv(programObject, GLES20.GL_LINK_STATUS, linked, 0);
 
         if (linked[0] == 0) {
-            Log.e("ESShader", "Error linking program:");
-            Log.e("ESShader", GLES20.glGetProgramInfoLog(programObject));
+            logError("Error linking program:");
+            logError(GLES20.glGetProgramInfoLog(programObject));
             GLES20.glDeleteProgram(programObject);
             return 0;
         }
@@ -110,4 +111,7 @@ public class ESShader {
         return programObject;
     }
 
+    private static void logError(String msg) {
+        Log.e("ESShader", msg);
+    }
 }
